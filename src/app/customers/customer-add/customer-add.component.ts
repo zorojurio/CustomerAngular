@@ -22,11 +22,11 @@ export class CustomerAddComponent implements OnInit {
 
   onCreatePost(postData: { 'name': string; 'telephone': string }): void {
     this.customerService.createCustomer(postData).subscribe(response => {
-        console.log(response);
+        alert('Successfully saved');
         this.router.navigate(['customers/']);
       },
       error => {
-        console.log(error);
+        alert(error);
       });
 
   }

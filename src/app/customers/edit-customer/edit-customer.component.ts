@@ -15,6 +15,8 @@ export class EditCustomerComponent implements OnInit {
   customerName = '';
   customerPhone = '';
   allowEdit = false;
+  isEmptyField = false;
+
 
   // changesSaved = false;
 
@@ -47,15 +49,20 @@ export class EditCustomerComponent implements OnInit {
     );
   }
 
-  onUpdateCustomer(id: number) {
+  onUpdateCustomer(formValue): void {
     if (this.allowEdit) {
-      this.customer = {id, name: this.customerName, telephone: this.customerPhone};
-      this.customerService.updateCustomer(id, this.customer).subscribe(
+      if (formValue.name === '' || formValue.telephone === ''){
+        this.isEmptyField = true;
+        return;
+      }
+      this.customer.name = formValue.name;
+      this.customer.telephone = formValue.telephone;
+      this.customerService.updateCustomer(this.customer).subscribe(
         response => {
-          console.log(response);
+          alert('Successfully saved');
           this.router.navigate(['/customers']);
         }, error => {
-          console.log(error);
+          alert(error);
         }
       );
 

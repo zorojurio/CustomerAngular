@@ -9,15 +9,16 @@ import {ErrorPageComponent} from './error-page/error-page.component';
 import {CustomerAddComponent} from './customers/customer-add/customer-add.component';
 
 
+
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: 'dashboard', component: HomeComponent},
+  {path: 'login', redirectTo: ''},
   {path: 'customers', component: CustomersComponent},
   {path: 'customer/:id', component: CustomerComponent},
   {path: 'customers/add',  component: CustomerAddComponent},
   {path: 'customer/:id/edit', component: EditCustomerComponent},
   {path: 'not-found', component: PageNotFoundComponent},
   {path: '403', component: ErrorPageComponent, data: {message: 'Not Authorized'}},
-  {path: '**', redirectTo: '/not-found'},
 ];
 
 @NgModule({
